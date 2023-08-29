@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  /* カスタムメニューのスタイルを設定 */
+  #custom-menu {
+    display: none;
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 5px;
+  }
+  body {
+  width: auto;
+  height: 100vh;
+  overflow: hidden;
+  }
+</style>
+</head>
+<body id="target-element">
+
+<!-- カスタムメニューのコンテンツ -->
+<div id="custom-menu">
+  <ul>
+    <li>メニューアイテム1</li>
+    <li>メニューアイテム2</li>
+    <li>メニューアイテム3</li>
+  </ul>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var targetElement = document.getElementById('target-element');
+  var customMenu = document.getElementById('custom-menu');
+
+  // 要素で右クリックイベントを検出
+  targetElement.addEventListener('contextmenu', function(event) {
+    event.preventDefault(); // デフォルトの右クリックメニューを無効化
+    customMenu.style.left = event.clientX + 'px';
+    customMenu.style.top = event.clientY + 'px';
+    customMenu.style.display = 'block';
+  });
+
+  // クリック外領域でカスタムメニューを非表示に
+  document.addEventListener('click', function(event) {
+    customMenu.style.display = 'none';
+  });
+});
+</script>
+
+</body>
+</html>
